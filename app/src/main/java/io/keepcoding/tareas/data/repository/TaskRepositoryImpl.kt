@@ -13,6 +13,10 @@ class TaskRepositoryImpl(
     private val taskEntityMapper: TaskEntityMapper
 ) : TaskRepository {
 
+    override suspend fun removeTask(task: Task) {
+        taskDao.delete(taskEntityMapper.map(task))
+    }
+
     override suspend fun getAll(): List<Task> =
         taskDao.getAll().map { taskMapper.map(it) }
 

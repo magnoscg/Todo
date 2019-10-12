@@ -18,8 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.tasks.DetailTaskActivity"/>
-        <activity android:name=".presentation.tasks.addTask.AddTaskActivity"/>
+        <activity android:name=".presentation.task.add_task.AddTaskActivity"/>
+        <activity android:name=".presentation.task.detail_task.DetailTaskActivity"/>
+        <activity android:name=".presentation.task.detail_task.EditTaskActivity"/>
     </application>
 
 </manifest>

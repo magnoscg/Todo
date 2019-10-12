@@ -1,9 +1,6 @@
 package io.keepcoding.tareas.data.repository.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface TaskDao {
@@ -19,5 +16,8 @@ interface TaskDao {
 
     @Update
     suspend fun update(taskEntity: TaskEntity)
+
+    @Delete
+    suspend fun delete(taskEntity: TaskEntity)
 
 }

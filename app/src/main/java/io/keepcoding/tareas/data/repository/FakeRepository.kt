@@ -7,6 +7,10 @@ import org.threeten.bp.Instant
 
 class FakeRepository : TaskRepository {
 
+    override suspend fun removeTask(taskEntity: Task) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     val tasks: MutableMap<Long, Task> =
         mutableMapOf(
             1L to Task(1, "Este es el primer task 🔥", Instant.now(), false, false),

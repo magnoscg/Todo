@@ -7,7 +7,10 @@ import io.keepcoding.tareas.data.repository.local.TaskDatabase
 import io.keepcoding.tareas.data.repository.mapper.TaskEntityMapper
 import io.keepcoding.tareas.data.repository.mapper.TaskMapper
 import io.keepcoding.tareas.domain.TaskRepository
+import io.keepcoding.tareas.presentation.task.TaskViewModel
 import io.keepcoding.tareas.presentation.tasks.TasksViewModel
+import io.keepcoding.util.AppDispatcherFactory
+import io.keepcoding.util.DispatcherFactory
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -27,12 +30,8 @@ val appModule = module {
         get<TaskDatabase>().getTaskDao()
     }
 
-    single<TaskRepository>(qualifier = named("real")) {
+    single<TaskRepository> {
         TaskRepositoryImpl(get(), get(), get())
-    }
-
-    single<TaskRepository>(qualifier = named("fake")) {
-        FakeRepository()
     }
 
     single {
@@ -43,8 +42,15 @@ val appModule = module {
         TaskEntityMapper()
     }
 
-    viewModel {
-        TasksViewModel(get(qualifier = named("fake")))
+    single<DispatcherFactory> {
+        AppDispatcherFactory()
     }
 
+    viewModel {
+        TasksViewModel(get(), get())
+    }
+
+    viewModel {
+        TaskViewModel(get(), get())
+    }
 }

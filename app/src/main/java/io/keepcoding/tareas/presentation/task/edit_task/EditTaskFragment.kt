@@ -1,4 +1,5 @@
-package io.keepcoding.tareas.presentation.tasks
+package io.keepcoding.tareas.presentation.task.detail_task
+
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,51 +9,47 @@ import androidx.fragment.app.Fragment
 import io.keepcoding.tareas.R
 import io.keepcoding.tareas.data.repository.local.MyTypeConverters
 import io.keepcoding.tareas.domain.model.Task
+import io.keepcoding.tareas.presentation.task.TaskViewModel
+import io.keepcoding.util.extensions.consume
 import io.keepcoding.util.extensions.observe
-import kotlinx.android.synthetic.main.fragment_detail_task.*
+import kotlinx.android.synthetic.main.fragment_edit_task.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.ocpsoft.prettytime.PrettyTime
+import org.threeten.bp.Instant
 import java.util.*
 
-class DetailTaskFragment : Fragment() {
 
-    private val tasksViewModel: TasksViewModel by viewModel()
+class EditTaskFragment : Fragment() {
+
+    private val taskViewModel: TaskViewModel by viewModel()
     var task: Task? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_detail_task, container, false)
+        return inflater.inflate(R.layout.fragment_edit_task, container, false)
     }
 
-    /*override fun onResume() {
-        super.onResume()
-        taskViewModel.loadTaskData(task?.id!!)
-    }
-*/
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val id = arguments?.let {
             it.getLong("id", 0)
         }
-        tasksViewModel.loadTasks(id!!)
+        taskViewModel.loadTaskData(id!!)
 
         bindState()
-        bindActions()
     }
 
 
-    private fun bindActions() {
+    private fun bindActions(task: Task) {
 
-        taskViewModel.tasksState.value?.let{ currentTask ->
+        modifyButton.setOnClickListener {
+            val taskContent = taskContent.text.toString()
+            val taskPriority = taskPrioritySwitch.isChecked
+            val taskFinished = taskFinishedCheck.isChecked
 
-            updateButton.setOnClickListener {
-                val taskContent = taskContent.text.toString()
-                val taskPriority = taskPrioritySwitch.isChecked
-                val taskFinished = taskFinishedCheck.isChecked
-
-                taskViewModel.update(task!!.id, taskContent, taskPriority, taskFinished, currentTask.createdAt)
-            }
+            taskViewModel.update(task, taskContent, taskPriority, taskFinished, Instant.now())
         }
     }
 
@@ -63,11 +60,9 @@ class DetailTaskFragment : Fragment() {
             taskContent.setText(currentTask.content)
             taskPrioritySwitch.isChecked = currentTask.isHighPriority
             taskFinishedCheck.isChecked = currentTask.isFinished
-
-            // Fill Date
             val dateConverted = MyTypeConverters()
             val date = Date(dateConverted.fromLocalDateTime(currentTask.createdAt))
-            val pretty = PrettyTime(Locale.forLanguageTag("en"))  // Library to set up the date counting the time passed since the creation (f.i.: hace 1 día)
+            val pretty = PrettyTime(Locale.forLanguageTag("en"))
             taskDate.text = pretty.format(date)
 
 
@@ -78,8 +73,9 @@ class DetailTaskFragment : Fragment() {
 
     private fun bindState() {
         with (taskViewModel) {
-            observe(tasksState) {
+            observe(taskState) {
                 loadDetails(it)
+                bindActions(it)
             }
             observe(closeAction) {
                 it.consume {
@@ -93,3 +89,7 @@ class DetailTaskFragment : Fragment() {
     private fun onClose() {
         requireActivity().finish()
     }
+
+
+
+}

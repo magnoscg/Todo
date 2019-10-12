@@ -12,6 +12,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
+            android:editable="true"
             android:ems="14"
             android:inputType="text"
             android:textColor="@android:color/black"
@@ -38,9 +39,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:enabled="false"
-            android:switchTextAppearance="@android:color/white"
-            android:textColor="@android:color/black"
+            android:enabled="true"
+            android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#C2185B"
             app:layout_constraintStart_toEndOf="@+id/labelPriority"
             app:layout_constraintTop_toBottomOf="@+id/taskContent" />
 
@@ -52,32 +53,31 @@
             android:layout_marginTop="20dp"
             android:text="@string/task_done"
             android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="@+id/labelPriority"
+            app:layout_constraintEnd_toEndOf="@+id/labelPriority"
             app:layout_constraintTop_toBottomOf="@+id/labelPriority" />
 
     <Switch
             android:id="@+id/taskFinishedCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
             android:layout_weight="1"
-            android:enabled="false"
-            android:switchTextAppearance="@android:color/white"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="@+id/taskPrioritySwitch"
-            app:layout_constraintStart_toStartOf="@+id/taskPrioritySwitch"
+            android:editable="false"
+            android:enabled="true"
+            android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#C2185B"
+            app:layout_constraintStart_toEndOf="@+id/labelFinished"
             app:layout_constraintTop_toBottomOf="@+id/taskPrioritySwitch" />
 
     <TextView
             android:id="@+id/labelDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
             android:text="@string/start_date"
             android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/taskPrioritySwitch"
             app:layout_constraintTop_toBottomOf="@+id/taskContent" />
 

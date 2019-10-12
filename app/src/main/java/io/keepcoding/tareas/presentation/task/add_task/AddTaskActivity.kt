@@ -1,50 +1,36 @@
-package io.keepcoding.tareas.presentation.tasks
+package io.keepcoding.tareas.presentation.task.add_task
 
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import io.keepcoding.tareas.R
-import kotlinx.android.synthetic.main.activity_detail_task.*
+import kotlinx.android.synthetic.main.activity_main.*
 
-
-class DetailTaskActivity : AppCompatActivity() {
+class AddTaskActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_detail_task)
-
+        setContentView(R.layout.activity_add_task)
         setUpToolbar()
-        setUpFragmentDetail(savedInstanceState)
-
+        setUpFragment(savedInstanceState)
     }
 
     private fun setUpToolbar() {
         setSupportActionBar(toolbar as Toolbar)
-        setTitle(getString(R.string.task_detail))
+        setTitle(R.string.add_todo)
         supportActionBar?.run {
             setDisplayHomeAsUpEnabled(true)
             setHomeButtonEnabled(true)
         }
     }
 
-    private fun setUpFragmentDetail(savedInstanceState: Bundle?) {
+    private fun setUpFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-
-            val fragment = DetailTaskFragment()
-            val taskId = intent.getLongExtra("id", 0)
-            val args = Bundle()
-
-            args.putLong("id", taskId)
-
-            fragment.arguments = args
-
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.detailContainer, fragment)
+                .replace(R.id.fragmentContainerAdd, AddTaskFragment())
                 .commit()
-
         }
     }
 
@@ -57,4 +43,5 @@ class DetailTaskActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }

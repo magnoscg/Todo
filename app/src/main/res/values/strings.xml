@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Tareas</string>
+    <string name="label_priority">Priority:</string>
+    <string name="button_add_todo">Add TODO</string>
+    <string name="label_priority">Priority:</string>
+    <string name="date_added">Added</string>
+    <string name="task_done">Done</string>
+    <string name="start_date">Start Date:</string>
+    <string name="modify_todo">Modify TODO</string>
+    <string name="add_todo">Add TODO</string>
+    <string name="task_detail">Detail</string>
+</resources>

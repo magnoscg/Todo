@@ -1,0 +1,109 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <EditText
+            android:id="@+id/taskContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="14"
+            android:inputType="text"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+            android:id="@+id/labelPriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/label_priority"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskContent" />
+
+    <Switch
+            android:id="@+id/taskPrioritySwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:switchTextAppearance="@android:color/white"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@+id/labelPriority"
+            app:layout_constraintTop_toBottomOf="@+id/taskContent" />
+
+
+    <TextView
+            android:id="@+id/labelFinished"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/task_done"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="@+id/labelPriority"
+            app:layout_constraintTop_toBottomOf="@+id/labelPriority" />
+
+    <Switch
+            android:id="@+id/taskFinishedCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:switchTextAppearance="@android:color/white"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/taskPrioritySwitch"
+            app:layout_constraintStart_toStartOf="@+id/taskPrioritySwitch"
+            app:layout_constraintTop_toBottomOf="@+id/taskPrioritySwitch" />
+
+    <TextView
+            android:id="@+id/labelDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/start_date"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/taskPrioritySwitch"
+            app:layout_constraintTop_toBottomOf="@+id/taskContent" />
+
+    <TextView
+            android:id="@+id/taskDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@+id/labelDate"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="@+id/labelDate"/>
+
+
+    <Button
+            android:id="@+id/modifyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/modify_todo"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

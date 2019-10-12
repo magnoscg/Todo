@@ -6,6 +6,7 @@ Android APP - Kotlin
 
 ***
 
-![Screenshot App](https://github.com/magnoscg/Todo/blob/master/3.png)
-![Screenshot App](https://github.com/magnoscg/Todo/blob/master/2.png)
-![Screenshot App](https://github.com/magnoscg/Todo/blob/master/1.png)
+<p align="left">
+  <img src="https://github.com/magnoscg/Todo/blob/master/3.png" width="270px" height="480px"/>
+  <img src="https://github.com/magnoscg/Todo/blob/master/2.png" width="270px" height="480px"/>
+  <img src="https://github.com/magnoscg/Todo/blob/master/1.png" width="270px" height="480px"/></p>
